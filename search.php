@@ -31,8 +31,8 @@
     <!-- display search results in a table -->
         <div class="container">
         <div class="display">
-                <table class="table table-hover">
-                    <thead class="thead-dark">
+            <table id="example" class="display" style="width:100%">
+                    <thead>
                         <th scope="col">#</th>
                         <th scope="col"><i class="fas fa-capsules"></i></th>
                         <th scope="col"><i class="fas fa-calendar-alt"></i></th>
@@ -44,6 +44,7 @@
                         <th scope="col"><i class="fas fa-edit"></i></th>
                         <th scope="col"><i class="fas fa-trash-alt"></i></th>
                     </thead>
+                    <tbody>
                     <?php
                         //-------------------------
                         //-- search result query --
@@ -83,6 +84,7 @@
                             <td><a href="index.php?id=<?php echo $row['id'] ?>" class="far fa-trash-alt"></a></td>
                     </tr>
                     <?php } ?>
+                    </tbody>
                 </table>
             </div>
         </div>

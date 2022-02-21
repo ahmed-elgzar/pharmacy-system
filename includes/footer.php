@@ -1,6 +1,7 @@
 
 		<script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="DataTables/datatables.min.js"></script>
         <script>
             //-----------------------------
             //-- alerts actions function --
@@ -15,7 +16,13 @@
             if ( window.history.replaceState ) {
                 window.history.replaceState( null, null, window.location.href );
             };
+            //
+            $(document).ready(function() {
+                $('#example').DataTable();
+            } );
+            //
         </script>
+        
 		<footer>
 			<p>جميع الحقوق محفوظة <a href="#">ahmed-elgzar</a> &copy; 2021</p>
 		</footer>

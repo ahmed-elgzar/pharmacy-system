@@ -53,14 +53,15 @@
             }else{
         ?>
         <div class="display">
-                <table class="table table-hover">
-                    <thead class="thead-dark">
+                <table id="example" class="display" style="width:100%">
+                    <thead>
                         <th scope="col">م</th>
                         <th scope="col">اسم الدواء</th>
                         <th scope="col">إسم الدكتور</th>
                         <th scope="col">السحب</th>
                         <th scope="col">تاريخ السحب</th>
                     </thead>
+                    <tbody>
                     <?php
                         $query = " SELECT * FROM subs WHERE DrName = '$dr' ORDER BY id DESC";
                         $result = mysqli_query($con,$query);
@@ -78,6 +79,7 @@
                             <td><?php echo $row['subDate']; ?></td>
                     </tr>
                     <?php } ?>
+                    </tbody>
                 </table>
             </div>
         <?php  }

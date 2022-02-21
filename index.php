@@ -108,77 +108,67 @@
                 </div>
             </form>
             <!-- display data from data base -->
-            <div class="display">
-            <table class="table table-hover">
-                    <thead class="thead-dark">
-                        <th scope="col">#</th>
-                        <th scope="col"><i class="fas fa-capsules"></i></th>
-                        <th scope="col"><i class="fas fa-calendar-alt"></i></th>
-                        <th scope="col"><i class="fas fa-store-alt"></i></th>
-                        <!-- <th scope="col"><i class="fas fa-store"></i></th>-->
-                        <!-- <th scope="col"><i class="fas fa-store-slash"></i></th>-->
-                       <!-- <th scope="col">تاريخ الاضافة</th> -->
-                        <th scope="col"><i class="fas fa-minus-circle"></i></th>
-                        <th scope="col"><i class="fas fa-edit"></i></th>
-                        <th scope="col"><i class="fas fa-trash-alt"></i></th>
-                    </thead>
-                    <?php
+            <div class="display" style="margin-bottom: 50px;">
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">اسم الدواء</th>
+                    <th scope="col">تاريخ الانتهاء</i></th>
+                    <th scope="col">الكمية</i></th>
+                    <th scope="col">الكمية المتبقية</th>
+                    <th scope="col">الكمية المستهلكة</th>
+                    <th scope="col">تاريخ الاضافة</th>
+                    <th scope="col">سحب</th>
+                    <th scope="col">تعديل</th>
+                    <th scope="col">حذف</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
 
-                        //-------------------------------------------------------------------------
-                        //-- Query to fetch data from database and sort it with Pagination limit --
-                        //-------------------------------------------------------------------------
-                        $query = "SELECT * FROM addpost ORDER BY id DESC  LIMIT $start_from, $limit";
-                        $result = mysqli_query($con,$query);
-                        $no = 0;
+                                //-------------------------------------------------------------------------
+                                //-- Query to fetch data from database and sort it with Pagination limit --
+                                //-------------------------------------------------------------------------
+                                $query = "SELECT * FROM addpost ORDER BY id DESC";
+                                $result = mysqli_query($con,$query);
+                                $no = 0;
 
-                        //-------------------------------------------
-                        //-- while loop to display database result --
-                        //-------------------------------------------
-                        while($row = mysqli_fetch_assoc($result)){
-                            $no++;
-                            $Id = $row['id'];
-                            $q = "SELECT SUM(sub) AS total FROM subs WHERE medID = '$Id'";
-                            $re = mysqli_query($con,$q);
-                            
-                            
-                    ?>
-                    <tr>
-                            <th><?php echo $no; ?></th>
-                            <td><a href="med.php?id=<?php echo $row['id'] ?>"><?php echo $row['name']; ?></a></td>
-                            <?php $d = strtotime($row['exp']); ?>
-                            <td><?php echo date("y-M",$d); ?></td>
-                            <td><?php echo $row['much']; ?></td>
-                            <?php //while($r = mysqli_fetch_assoc($re)){ ?>
-                            <!-- <td><?php //echo $r['total']; ?></td>-->
-                           <?php 
-                                       // $m = $row['much'];
-                                       // $s = $r['total'];
-                                      //  $subt = $m-$s;
+                                //-------------------------------------------
+                                //-- while loop to display database result --
+                                //-------------------------------------------
+                                while($row = mysqli_fetch_assoc($result)){
+                                    $no++;
+                                    $Id = $row['id'];
+                                    $q = "SELECT SUM(sub) AS total FROM subs WHERE medID = '$Id'";
+                                    $re = mysqli_query($con,$q);
+                                    
+                                    
                             ?>
-                            <!-- <td><?php //echo $subt; ?></td>-->
-                            <?php// } ?>
-                            <!-- <td><?php //echo $row['addDate']; ?></td> -->
-                            <td><a href="sub.php?id=<?php echo $row['id'] ?>" class="fas fa-minus-circle"></a></td>
-                            <td><a href="edit.php?id=<?php echo $row['id'] ?>" class="far fa-edit"></a></td>
-                            <td><a href="index.php?id=<?php echo $row['id'] ?>" class="far fa-trash-alt"></a></td>
-                    </tr>
-                    <?php } ?>
-                </table>
-                <?php 
-                    //-----------------------
-                    //-- Pagination script --
-                    //----------------------- 
-                    $result_db = mysqli_query($con,"SELECT COUNT(id) FROM addpost"); 
-                    $row_db = mysqli_fetch_row($result_db);  
-                    $total_records = $row_db[0];  
-                    $total_pages = ceil($total_records / $limit); 
-                    /* echo  $total_pages; */
-                    $pagLink = "<ul class='pagination'>";  
-                    for ($i=1; $i<=$total_pages; $i++) {
-                                $pagLink .= "<li class='page-item'><a class='page-link' href='index.php?page=".$i."'>".$i."</a></li>";	
-                    }
-                    echo $pagLink . "</ul>";  
-                ?>
+                            <tr>
+                                    <th><?php echo $no; ?></th>
+                                    <td><a href="med.php?id=<?php echo $row['id'] ?>"><?php echo $row['name']; ?></a></td>
+                                    <?php $d = strtotime($row['exp']); ?>
+                                    <td><?php echo date("y-M",$d); ?></td>
+                                    <td><?php echo $row['much']; ?></td>
+                                    <?php while($r = mysqli_fetch_assoc($re)){ ?>
+                                    <td><?php echo $r['total']; ?></td>
+                                <?php 
+                                            $m = $row['much'];
+                                            $s = $r['total'];
+                                            $subt = $m-$s;
+                                    ?>
+                                    <td><?php echo $subt; ?></td>
+                                    <?php } ?>
+                                    <td><?php echo $row['addDate']; ?></td>
+                                    <td><a href="sub.php?id=<?php echo $row['id'] ?>" class="fas fa-minus-circle"></a></td>
+                                    <td><a href="edit.php?id=<?php echo $row['id'] ?>" class="far fa-edit"></a></td>
+                                    <td><a href="index.php?id=<?php echo $row['id'] ?>" class="far fa-trash-alt"></a></td>
+                            </tr>
+                            <?php } ?>
+                </tbody>
+            </table>
+            
             </div>
          </div>
 <?php

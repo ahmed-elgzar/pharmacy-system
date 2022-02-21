@@ -82,8 +82,8 @@
             }else{
         ?>
         <div class="display">
-                <table class="table table-hover">
-                    <thead class="thead-dark">
+                <table id="example" class="display" style="width:100%">
+                    <thead>
                         <th scope="col">م</th>
                         <th scope="col">اسم الدواء</th>
                         <th scope="col">إسم الدكتور</th>
@@ -92,6 +92,7 @@
                         <th scope="col"><i class="fas fa-edit"></i></th>
                         <th scope="col"><i class="fas fa-trash-alt"></i></th>
                     </thead>
+                    <tbody>
                     <?php
                         $query = " SELECT * FROM subs WHERE medID = $id ORDER BY id DESC";
                         $result = mysqli_query($con,$query);
@@ -111,6 +112,7 @@
                             <td><a href="med.php?id=<?php echo $row['id']; ?>" class="far fa-trash-alt"></a></td>
                     </tr>
                     <?php } ?>
+                    </tbody>
                 </table>
             </div>
         <?php  }

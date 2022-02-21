@@ -6,7 +6,7 @@
         <link rel="stylesheet" href='css/all.css'> <!-- font awsome files -->
         <link rel="stylesheet" href="css/bootstrap.min.css"> <!-- bootstarp -->
         <link rel="stylesheet" href="css/bootstrap-rtl.css">
-
+        <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
         <title>Ever Green- <?php echo $pageTitle; ?></title>
         <style>
          body{
@@ -41,14 +41,5 @@
                 <img src="ever.png" width="60" height="60" class="d-inline-block" alt="">
                 Ever Green
             </a>
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <form class="form-inline my-2 my-lg-0" action="search.php" method="get">
-                        <input class="form-control mr-sm-2" type="search" placeholder="إبحث عن دواء" aria-label="Search" name="search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="go"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
         </nav>
 		<!-- end nav bar -->
